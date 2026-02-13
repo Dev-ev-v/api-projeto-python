@@ -1,18 +1,18 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 app = Flask(__name__)
 tarefas = []
 
+@app.route("/")
+def home():
+    return render_template("index.html")
+
 @app.route("/tarefas", methods=["GET"])
 def listar():
-    return jsonify({"tarefas": tarefas})
+    return jsonify(tarefas)
 
 @app.route("/tarefas", methods=["POST"])
 def adicionar():
-    dados = request.get_json()
-
-    if not dados or "tarefa" not in dados:
-        return jsonify({"erro": "campo 'tarefa' obrigatório"}), 400
-
+    dados = request.json
     tarefas.append(dados["tarefa"])
-    return jsonify({"status": "adicionado", "tarefa": dados["tarefa"]}), 201
+    return {"ok": True}
