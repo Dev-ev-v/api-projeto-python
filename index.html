@@ -13,19 +13,29 @@
 <ul id="lista"></ul>
 
 <script>
-const API = "https://Guilhermezaeg123.pythonanywhere.com"
-async function carregar(){
- let r = await fetch(API + "/tarefas")
- let dados = await r.json()
+const API = "https://guilhermezaeg123.pythonanywhere.com"
 
- lista.innerHTML=""
- dados.forEach(t=>{
-  lista.innerHTML += "<li>"+t+"</li>"
- })
+const txt = document.getElementById("txt")
+const lista = document.getElementById("lista")
+
+async function carregar(){
+ try{
+  const r = await fetch(API + "/tarefas")
+  if(!r.ok) throw new Error(r.status)
+
+  const dados = await r.json()
+  lista.innerHTML=""
+
+  dados.forEach(t=>{
+   lista.innerHTML += `<li>${t}</li>`
+  })
+ }catch(e){
+  console.error(e)
+ }
 }
 
 async function add(){
- let texto = txt.value
+ const texto = txt.value
 
  await fetch(API + "/tarefas",{
   method:"POST",
@@ -39,6 +49,5 @@ async function add(){
 
 carregar()
 </script>
-
 </body>
 </html>
