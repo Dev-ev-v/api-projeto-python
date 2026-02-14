@@ -13,8 +13,9 @@
 <ul id="lista"></ul>
 
 <script>
+const API = "https://Guilhermezaeg123.pythonanywhere.com"
 async function carregar(){
- let r = await fetch("/tarefas")
+ let r = await fetch(API + "/tarefas")
  let dados = await r.json()
 
  lista.innerHTML=""
@@ -26,7 +27,7 @@ async function carregar(){
 async function add(){
  let texto = txt.value
 
- await fetch("/tarefas",{
+ await fetch(API + "/tarefas",{
   method:"POST",
   headers:{ "Content-Type":"application/json"},
   body: JSON.stringify({tarefa:texto})
