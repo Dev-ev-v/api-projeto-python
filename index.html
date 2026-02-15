@@ -13,7 +13,7 @@
 <input id="User" placeholder="User" required>
  <input id="Password" placeholder="Password" type="Password" required>
 <button type="submit">Entrar</button>
-      <p id="msg"></p>
+      <p id="msg">Sua mensagem de login aparecerá aqui!</p>
     </form>
     </main>
     <script>
@@ -36,6 +36,7 @@
   const dados = await resposta.json()
 
   if(dados.ok){
+    msg.textContent = "Login válido"
     window.location.href = "tasks.html"
   } else {
     msg.textContent = "Login inválido"
