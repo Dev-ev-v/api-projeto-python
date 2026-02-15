@@ -1,4 +1,0 @@
-flask
-request
-jsonify
-gunicorn
