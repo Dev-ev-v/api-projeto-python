@@ -17,6 +17,9 @@
     </form>
     </main>
     <script>
+      const user = document.getElementById("User")
+      const password = document.getElementById("Password")
+      const msg = document.getElementById("msg")
       document.getElementById("form").addEventListener("submit", async e => {
   e.preventDefault()
         const resposta = await fetch("https://guilhermepythonzaeg123.pythonanywhere.com/login", {
@@ -25,8 +28,8 @@
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      user: User.value,
-      password: Password.value
+      user: user.value,
+      password: password.value
     })
   })
 
