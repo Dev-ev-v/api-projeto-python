@@ -17,7 +17,6 @@
     </form>
     </main>
     <script>
-      window.location.href = "login.html"
       document.getElementById("form").addEventListener("submit", async e => {
   e.preventDefault()
         const resposta = await fetch("https://guilhermepythonzaeg123.pythonanywhere.com/login", {
