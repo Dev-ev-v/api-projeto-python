@@ -9,11 +9,36 @@
     <h2>Faça seu login para continuar</h2>
    </header>
     <main>
-    <form method="POST">
-<input name="User" placeholder="User" required>
- <input name="Password" placeholder="Password" type="Password" required>
+    <form method="POST" id="form">
+<input id="User" placeholder="User" required>
+ <input id="Password" placeholder="Password" type="Password" required>
 <button type="submit">Entrar</button>
+      <p id="msg"></p>
     </form>
     </main>
+    <script>
+      window.location.href = "login.html"
+      document.getElementById("form").addEventListener("submit", async e => {
+  e.preventDefault()
+        const resposta = await fetch("https://Guilhermepythonzaeg123.pythonanywhere.com/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      user: User.value,
+      password: Password.value
+    })
+  })
+
+  const dados = await resposta.json()
+
+  if(dados.ok){
+    window.location.href = "tasks.html"
+  } else {
+    msg.textContent = "Login inválido"
+  }
+})
+    </script>
   </body>
 </html>
