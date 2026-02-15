@@ -1,0 +1,52 @@
+:root {
+    --primary_color: rgb(60, 50, 10);
+    --secondary_color: rgb(45, 40, 20);
+    --text_color: rgb(30, 30, 30);
+
+    --primary_font: "Ubuntu", sans-serif;
+    --secondary_font: Arial, sans-serif;
+    --text_font: serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--text_font);
+}
+
+h1 {
+    color: var(--primary_color);
+    font-family: var(--primary_font);
+}
+
+h2 {
+    color: var(--secondary_color);
+    font-family: var(--secondary_font);
+}
+
+h3, h4, h5, h6 {
+    color: var(--text_color);
+    font-family: var(--secondary_font);
+}
+
+p, input {
+    color: var(--text_color);
+    font-family: var(--text_font);
+}
+
+main {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+}
+
+input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
