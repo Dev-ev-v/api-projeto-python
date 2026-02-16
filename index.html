@@ -37,10 +37,10 @@
   const dados = await resposta.json()
 
   if(dados.success){
-    msg.textContent = dados.msg
+    msg.textContent = `{dados.msg}`
     window.location.href = "tasks.html"
   } else {
-    msg.textContent = dados.msg
+    msg.textContent = `{dados.msg}`
   }
 })
     </script>
