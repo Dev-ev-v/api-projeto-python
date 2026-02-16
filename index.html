@@ -15,6 +15,7 @@
 <button type="submit">Entrar</button>
       <p id="msg">Sua mensagem de login aparecerá aqui!</p>
     </form>
+      <pre id="output"></pre>
       <button id="login">Entrar em conta já existente</button>
     </main>
     <script>
@@ -26,6 +27,7 @@
       const login_btn_text1 = "Entrar em conta já existente"
       const login_btn_text2 = "Criar uma nova conta"
       let mode = "/register"
+      const output = document.getElementById("output")
       login_btn.addEventListener("click", () => {
 if (login_btn.textContent == login_btn_text1) {
 login_btn.textContent = login_btn_text2
@@ -55,7 +57,8 @@ console.log(dados)
     const cookies = await fetch(API + "/debug", {
       credentials: "include"
     })
-        msg.textContent = `${await cookies.json()}`
+        msg.textContent = `${dados.msg}`
+    output.textContent = JSON.stringify(cookies, null, 2)
   } else {
     msg.textContent = `${dados.msg}`
   }
