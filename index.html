@@ -54,7 +54,7 @@ login_btn.textContent = login_btn_text1
   const dados = await resposta.json()
 console.log(dados)
   if(dados.success){
-    const cookies = await fetch(API + "/debug", {
+    const cookies = await fetch(API + "/testcookies", {
       credentials: "include"
     })
         msg.textContent = `${dados.msg}`
