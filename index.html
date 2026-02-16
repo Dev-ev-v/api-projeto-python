@@ -52,8 +52,10 @@ login_btn.textContent = login_btn_text1
   const dados = await resposta.json()
 console.log(dados)
   if(dados.success){
-    msg.textContent = `${dados.msg}`
-    window.location.href = "tasks.html"
+    const cookies = await fetch(API + "/debug", {
+      credentials: "include"
+    })
+        msg.textContent = `${await cookies.json()}`
   } else {
     msg.textContent = `${dados.msg}`
   }
@@ -61,3 +63,4 @@ console.log(dados)
     </script>
   </body>
 </html>
+
