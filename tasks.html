@@ -30,10 +30,12 @@ async function carregar(){
   lista.innerHTML=""
 
   dados.forEach(t=>{
-   lista.innerHTML += `<li>${t}</li>`
+   const li = document.createElement("li")
+li.textContent = t
+lista.appendChild(li)
   })
  } 
- msg.textContent = `${dados.msg}`
+ msg.textContent = dados.msg
 }
 
 async function add(){
