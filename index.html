@@ -15,7 +15,7 @@
 <button type="submit">Entrar</button>
       <p id="msg">Sua mensagem de login aparecerá aqui!</p>
     </form>
-      <a href="https://dev-ev-v.github.io/api-projeto-python/register">Entrar em conta já existente</a>
+      <a href="https://dev-ev-v.github.io/api-projeto-python/login">Entrar em conta já existente</a>
     </main>
     <script>
       const user = document.getElementById("User")
@@ -23,7 +23,7 @@
       const msg = document.getElementById("msg")
       document.getElementById("form").addEventListener("submit", async e => {
   e.preventDefault()
-        const resposta = await fetch("https://guilhermepythonzaeg123.pythonanywhere.com/login", {
+        const resposta = await fetch("https://guilhermepythonzaeg123.pythonanywhere.com/register", {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
