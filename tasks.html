@@ -8,41 +8,41 @@
 <header>
 <h1>Seu gerenciador de tarefas pessoais está aqui</h1>
  <h2>No Tasks Manager, você pode criar e agendar tarefas, deixe sua vida mais produtiva agora mesmo!</h2>
+<p id="msg"></p>
 </header>
+ <main>
  <input id="txt">
 <button onclick="add()">Adicionar</button>
 
 <ul id="lista"></ul>
-
+ </main>
 <script>
-const API = "https://guilhermepythonzaeg123.pythonanywhere.com/"
-
+const API = "https://guilhermepythonzaeg123.pythonanywhere.com"
+const msg = document.getElementById("msg")
 const txt = document.getElementById("txt")
 const lista = document.getElementById("lista")
 
 async function carregar(){
- try{
-  const r = await fetch(API + "/tarefas")
-  if(!r.ok) throw new Error(r.status)
+  const r = await fetch(API + "/tasks")
 
   const dados = await r.json()
+  if (dados.success) {
   lista.innerHTML=""
 
   dados.forEach(t=>{
    lista.innerHTML += `<li>${t}</li>`
   })
- }catch(e){
-  console.error(e)
- }
+ } 
+ msg.innerHTML = `${dados.msg}`
 }
 
 async function add(){
  const texto = txt.value
 
- await fetch(API + "/tarefas",{
+ await fetch(API + "/tasks",{
   method:"POST",
   headers:{ "Content-Type":"application/json"},
-  body: JSON.stringify({tarefa:texto})
+  body: JSON.stringify({task:texto})
  })
 
  txt.value=""
