@@ -1,53 +1,79 @@
 :root {
-    --primary_color: rgb(60, 50, 10);
-    --secondary_color: rgb(45, 40, 20);
-    --text_color: rgb(30, 30, 30);
+    --color-primary: hsl(45 70% 25%);
+    --color-secondary: hsl(40 40% 30%);
+    --color-text: hsl(0 0% 15%);
+    --color-border: hsl(0 0% 80%);
+    --color-bg: hsl(0 0% 98%);
 
-    --primary_font: "Ubuntu", sans-serif;
-    --secondary_font: Arial, sans-serif;
-    --text_font: serif;
+    --font-heading: "Ubuntu", system-ui, sans-serif;
+    --font-ui: Arial, Helvetica, sans-serif;
+    --font-body: Georgia, serif;
+
+    --radius: 6px;
+    --spacing: 1rem;
+}
+
+/* Reset essencial */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    font-family: var(--text_font);
-    display: flex;
+    font-family: var(--font-body);
+    color: var(--color-text);
+    background: var(--color-bg);
+    line-height: 1.5;
 }
 
+/* Tipografia */
 h1 {
-    color: var(--primary_color);
-    font-family: var(--primary_font);
+    color: var(--color-primary);
+    font-family: var(--font-heading);
 }
 
 h2 {
-    color: var(--secondary_color);
-    font-family: var(--secondary_font);
+    color: var(--color-secondary);
+    font-family: var(--font-ui);
 }
 
 h3, h4, h5, h6 {
-    color: var(--text_color);
-    font-family: var(--secondary_font);
+    font-family: var(--font-ui);
 }
 
-p, input {
-    color: var(--text_color);
-    font-family: var(--text_font);
+p {
+    margin-top: 0;
 }
 
+/* Layout */
 main {
     max-width: 900px;
-    margin: auto;
-    padding: 2rem;
+    margin-inline: auto;
+    padding: calc(var(--spacing) * 2);
 }
 
-input {
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-}
-
+/* Formulários */
 form {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing);
+}
+
+input {
+    padding: 0.5rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    font-family: inherit;
+}
+
+input:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
