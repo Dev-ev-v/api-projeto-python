@@ -34,7 +34,7 @@ login_btn.textContent = login_btn_text2
 login_btn.textContent = login_btn_text1
   mode = "/register"
 }
-      }
+      })
       document.getElementById("form").addEventListener("submit", async e => {
   e.preventDefault()
         const resposta = await fetch(API + mode, {
