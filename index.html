@@ -40,7 +40,8 @@ console.log(dados)
     msg.textContent = `${dados.msg}`
     window.location.href = "tasks.html"
   } else {
-    msg.textContent = `{dados.msg}`
+    msg.textContent = `${dados.msg}`
+    throw new Error(resposta.status)
   }
 })
     </script>
