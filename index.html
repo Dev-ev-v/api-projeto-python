@@ -58,11 +58,11 @@ console.log(dados)
       method: "POST",
       credentials: "include"
     })
-        msg.textContent = `${dados.msg}`
+        msg.textContent = dados.msg
     output.textContent = JSON.stringify(cookies, null, 2)
     window.location.href = "tasks.html"
   } else {
-    msg.textContent = `${dados.msg}`
+    msg.textContent = dados.msg
   }
 })
     </script>
