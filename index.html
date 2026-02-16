@@ -15,20 +15,36 @@
 <button type="submit">Entrar</button>
       <p id="msg">Sua mensagem de login aparecerá aqui!</p>
     </form>
-      <a href="https://dev-ev-v.github.io/api-projeto-python/">Entrar em conta já existente</a>
+      <button id="login"></button>
     </main>
     <script>
       const user = document.getElementById("User")
       const password = document.getElementById("Password")
       const msg = document.getElementById("msg")
+      const API = "https://guilhermepythonzaeg123.pythonanywhere.com"
+      const login_btn = document.getElementById("login")
+      const login_btn_text1 = "Entrar em conta já existente"
+      const login_btn_text2 = "Criar uma nova conta"
+      login_btn.textContent == login_btn_text1
+      let mode = "/register"
+      login_btn.addEventListener("click", () => {
+if (login_btn.textContent == login_btn_text1) {
+login_btn.textContent == login_btn_text2
+  mode = "/login"
+} else {
+login_btn.textContent == login_btn_text1
+  mode = "/register"
+}
+      }
       document.getElementById("form").addEventListener("submit", async e => {
   e.preventDefault()
-        const resposta = await fetch("https://guilhermepythonzaeg123.pythonanywhere.com/register", {
+        const resposta = await fetch(API + mode, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
-    body: JSON.stringify({
+    credentials: "include",
+          body: JSON.stringify({
       user: user.value,
       password: password.value
     })
