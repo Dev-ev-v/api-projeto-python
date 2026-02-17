@@ -29,12 +29,12 @@ async function carregar(){
   if (dados.success) {
   lista.innerHTML=""
 
-  dados.forEach(t=>{
-   const li = document.createElement("li")
-li.textContent = t
-lista.appendChild(li)
+  dados.tasks.forEach(t=>{
+    const li = document.createElement("li")
+    li.textContent = t
+    lista.appendChild(li)
   })
- } 
+  }
  msg.textContent = dados.msg
 }
 
