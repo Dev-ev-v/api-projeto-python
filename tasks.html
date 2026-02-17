@@ -23,7 +23,14 @@ const txt = document.getElementById("txt")
 const lista = document.getElementById("lista")
 
 async function carregar(){
-  const r = await fetch(API + "/tasks", { credentials: "include" })
+  const r = await fetch(API + "/tasks", {
+   method:"GET",
+   headers: {
+   (localStorage.token && {
+   Authorization:"Bearer "+localStorage.token
+ }),
+   }
+  })
 
   const dados = await r.json()
   if (dados.success) {
@@ -43,8 +50,11 @@ async function add(){
 
  await fetch(API + "/tasks",{
   method:"POST",
-credentials: "include",
-  headers:{ "Content-Type":"application/json"},
+  headers:{
+   (localStorage.token && {
+   Authorization:"Bearer "+localStorage.token
+ }),
+  "Content-Type":"application/json"},
   body: JSON.stringify({task:texto})
  })
 
