@@ -10,12 +10,11 @@
    </header>
     <main>
     <form method="POST" id="form">
-<input id="User" placeholder="User" required>
- <input id="Password" placeholder="Password" type="Password" required>
+<input id="User" placeholder="User">
+ <input id="Password" placeholder="Password" type="Password">
 <button type="submit">Entrar</button>
-      <p id="msg">Sua mensagem de login aparecerá aqui!</p>
+      <p id="msg"></p>
     </form>
-      <pre id="output"></pre>
       <button id="login">Entrar em conta já existente</button>
     </main>
     <script>
@@ -27,7 +26,6 @@
       const login_btn_text1 = "Entrar em conta já existente"
       const login_btn_text2 = "Criar uma nova conta"
       let mode = "/register"
-      const output = document.getElementById("output")
       login_btn.addEventListener("click", () => {
 if (login_btn.textContent == login_btn_text1) {
 login_btn.textContent = login_btn_text2
@@ -44,7 +42,6 @@ login_btn.textContent = login_btn_text1
     headers: {
       "Content-Type": "application/json"
     },
-    credentials: "include",
           body: JSON.stringify({
       user: user.value,
       password: password.value
@@ -52,14 +49,9 @@ login_btn.textContent = login_btn_text1
   })
 
   const dados = await resposta.json()
-console.log(dados)
-  if(dados.success){
-    const cookies = await fetch(API + "/testcookies", {
-      method: "POST",
-      credentials: "include"
-    })
+  if(dados.success && dados.token){
         msg.textContent = dados.msg
-    output.textContent = JSON.stringify(cookies, null, 2)
+    localStorage.token = dados.token
     window.location.href = "tasks.html"
   } else {
     msg.textContent = dados.msg
