@@ -30,9 +30,6 @@
       async function api(path, options = {}) {
  const headers = {
    "Content-Type":"application/json",
-   ...(localStorage.token && {
-     Authorization:"Bearer "+localStorage.token
-   })
  }
  const r = await fetch(API + path, {
    ...options,
@@ -57,8 +54,7 @@ login_btn.textContent = login_btn_text1
       
       document.getElementById("form").addEventListener("submit", async e => {
   e.preventDefault()
-        const dados = await api(mode,{method:"POST",body:JSON.stringify({user:user.value,password:password.value})})
-  
+        const dados = await api(mode,{method:"POST",body:JSON.stringify({user:user.value,password:password.value})})  
   if(dados.success && dados.token){
         msg.textContent = dados.msg
     localStorage.token = dados.token
@@ -67,6 +63,10 @@ login_btn.textContent = login_btn_text1
     msg.textContent = dados.msg
   }
 })
+
+      if(localStorage.token){
+ window.location.href = "tasks.html"
+      }
     </script>
   </body>
 </html>
