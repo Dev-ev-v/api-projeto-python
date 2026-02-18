@@ -25,20 +25,24 @@ const lista = document.getElementById("lista")
 async function api(path, options={}){
  const headers = {
    "Content-Type":"application/json",
-   ...(localStorage.token && {
+   ...(localStorage.token ? {
      Authorization:"Bearer "+localStorage.token
-   })
+   } : {})
  }
  const r = await fetch(API+path,{
    ...options,
-   headers
+   headers:{...headers, ...(options.headers||{})}
  })
- if(r.status === 401){
+ if(r.status===401){
    localStorage.removeItem("token")
-   window.location.href="index.html"
+   location.href="index.html"
+   return
+ }
+ if(!r.ok){
+   throw new Error("Erro HTTP "+r.status)
  }
  return r.json()
- }
+}
  
 async function carregar(){
   const dados = await api("/tasks",{method:"GET"})
