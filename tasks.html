@@ -22,20 +22,28 @@ const msg = document.getElementById("msg")
 const txt = document.getElementById("txt")
 const lista = document.getElementById("lista")
 
+async function api(path, options={}){
+ const headers = {
+   "Content-Type":"application/json",
+   ...(localStorage.token && {
+     Authorization:"Bearer "+localStorage.token
+   })
+ }
+ const r = await fetch(API+path,{
+   ...options,
+   headers
+ })
+ if(r.status === 401){
+   localStorage.removeItem("token")
+   window.location.href="index.html"
+ }
+ return r.json()
+ }
+ 
 async function carregar(){
-  const r = await fetch(API + "/tasks", {
-   method:"GET",
-   headers: {
-   (localStorage.token && {
-   Authorization:"Bearer "+localStorage.token
- }),
-   }
-  })
-
-  const dados = await r.json()
+  const dados = await api("/tasks",{method:"GET"})
   if (dados.success) {
   lista.innerHTML=""
-
   dados.tasks.forEach(t=>{
     const li = document.createElement("li")
     li.textContent = t
@@ -47,17 +55,7 @@ async function carregar(){
 
 async function add(){
  const texto = txt.value
-
- await fetch(API + "/tasks",{
-  method:"POST",
-  headers:{
-   (localStorage.token && {
-   Authorization:"Bearer "+localStorage.token
- }),
-  "Content-Type":"application/json"},
-  body: JSON.stringify({task:texto})
- })
-
+ await api("/tasks",{method:"POST",body:JSON.stringify({task:texto})})
  txt.value=""
  carregar()
 }
