@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.environ("APP_SECRET_KEY")
+app.secret_key = os.environ["APP_SECRET_KEY"]
 
 CORS(app, origins=["https://dev-ev-v.github.io"])
 
