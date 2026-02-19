@@ -16,7 +16,7 @@ CORS(app, origins=["https://dev-ev-v.github.io"])
 users = {}
 tasks = {}
 
-SECRET = os.environ["jwt"]
+SECRET = os.environ["JWT"]
 
 def gerar_token(user):
     payload = {
