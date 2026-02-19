@@ -5,16 +5,18 @@ from functools import wraps
 import os
 import jwt
 import datetime
+from dotenv import load_dotenv
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("SECRET_KEY","devkey")
+app.secret_key = os.environ("APP_SECRET_KEY")
 
 CORS(app, origins=["https://dev-ev-v.github.io"])
 
 users = {}
 tasks = {}
 
-SECRET = os.environ["$jwt"]
+SECRET = os.environ["jwt"]
 
 def gerar_token(user):
     payload = {
